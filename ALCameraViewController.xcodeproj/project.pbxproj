@@ -280,7 +280,7 @@
 					};
 					FAF0583E1B31618D008E5592 = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = 2466624KEK;
+						DevelopmentTeam = 6KN952WR85;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
@@ -545,7 +545,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 2466624KEK;
+				DEVELOPMENT_TEAM = 6KN952WR85;
 				INFOPLIST_FILE = "Example/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -562,7 +562,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 2466624KEK;
+				DEVELOPMENT_TEAM = 6KN952WR85;
 				INFOPLIST_FILE = "Example/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
