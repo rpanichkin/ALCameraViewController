@@ -40,13 +40,14 @@ public class PhotoLibraryViewController: UIViewController {
         
         setNeedsStatusBarAppearanceUpdate()
         
-        let buttonImage = UIImage(named: "libraryCancel", in: CameraGlobals.shared.bundle, compatibleWith: nil)?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+        let buttonImage = UIImage(named: "libraryCancel", in: CameraGlobals.shared.bundle, compatibleWith: nil)?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        let libraryCancelButton = UIBarButtonItem(image: buttonImage,
+                                                  style: UIBarButtonItemStyle.plain,
+                                                  target: self,
+                                                  action: #selector(dismissLibrary))
+        libraryCancelButton.tintColor = .white
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: buttonImage,
-                                                           style: UIBarButtonItemStyle.plain,
-                                                           target: self,
-                                                           action: #selector(dismissLibrary))
-        
+        navigationItem.leftBarButtonItem = libraryCancelButton
         view.backgroundColor = UIColor(white: 0.2, alpha: 1)
         view.addSubview(collectionView)
         
