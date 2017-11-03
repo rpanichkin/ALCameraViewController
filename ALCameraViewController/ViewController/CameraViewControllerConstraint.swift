@@ -410,7 +410,7 @@ extension CameraViewController {
             toItem: view,
             attribute: attribute,
             multiplier: 1.0,
-            constant: constraintRight ? 8 : -8)
+            constant: constraintRight ? 20 : -20)
         view.addConstraint(flashButtonEdgeConstraint!)
     }
     
