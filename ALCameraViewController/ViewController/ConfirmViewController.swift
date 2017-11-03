@@ -32,6 +32,8 @@ public class ConfirmViewController: UIViewController, UIScrollViewDelegate {
 
 	let asset: PHAsset?
 	let image: UIImage?
+    
+    var loadingSpinner: UIActivityIndicatorView!
 	
 	public init(image: UIImage, croppingParameters: CroppingParameters) {
 		self.croppingParameters = croppingParameters
@@ -73,8 +75,8 @@ public class ConfirmViewController: UIViewController, UIScrollViewDelegate {
         cropOverlay.isMovable = croppingParameters.allowMoving
         cropOverlay.minimumSize = croppingParameters.minimumSize
 
-		let spinner = showSpinner()
-		
+		loadingSpinner = showSpinner()
+        
 		disable()
 		
 		if let asset = asset {
@@ -83,16 +85,16 @@ public class ConfirmViewController: UIViewController, UIScrollViewDelegate {
 				.setTargetSize(largestPhotoSize())
 				.onSuccess { [weak self] image in
 					self?.configureWithImage(image)
-					self?.hideSpinner(spinner)
+					self?.hideSpinner()
 					self?.enable()
 				}
 				.onFailure { [weak self] error in
-					self?.hideSpinner(spinner)
+					self?.hideSpinner()
 				}
 				.fetch()
 		} else if let image = image {
 			configureWithImage(image)
-			hideSpinner(spinner)
+			hideSpinner()
 			enable()
 		}
 	}
@@ -107,6 +109,8 @@ public class ConfirmViewController: UIViewController, UIScrollViewDelegate {
 		scrollView.zoomScale = scale
 		centerScrollViewContents()
 		centerImageViewOnRotate()
+        
+        loadingSpinner.center = view.center
 	}
 	
 	public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -234,17 +238,17 @@ public class ConfirmViewController: UIViewController, UIScrollViewDelegate {
 		
 		imageView.isHidden = true
 		
-		let spinner = showSpinner()
+		loadingSpinner = showSpinner()
 		
 		if let asset = asset {
 			var fetcher = SingleImageFetcher()
 				.onSuccess { [weak self] image in
 					self?.onComplete?(image, self?.asset)
-					self?.hideSpinner(spinner)
+					self?.hideSpinner()
 					self?.enable()
 				}
 				.onFailure { [weak self] error in
-					self?.hideSpinner(spinner)
+					self?.hideSpinner()
 					self?.showNoImageScreen(error)
 				}
 				.setAsset(asset)
@@ -267,7 +271,7 @@ public class ConfirmViewController: UIViewController, UIScrollViewDelegate {
 			}
 			
 			onComplete?(newImage, nil)
-			hideSpinner(spinner)
+			hideSpinner()
 			enable()
 		}
 	}
@@ -292,9 +296,9 @@ public class ConfirmViewController: UIViewController, UIScrollViewDelegate {
 		return spinner
 	}
 	
-	func hideSpinner(_ spinner: UIActivityIndicatorView) {
-		spinner.stopAnimating()
-		spinner.removeFromSuperview()
+	func hideSpinner() {
+		loadingSpinner.stopAnimating()
+		loadingSpinner.removeFromSuperview()
 	}
 	
 	func disable() {
